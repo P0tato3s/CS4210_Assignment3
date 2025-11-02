@@ -27,14 +27,19 @@ df = pd.read_csv('optdigits.tes', sep=',', header=None) #reading the data by usi
 X_test = np.array(df.values)[:,:64]    #getting the first 64 fields to form the feature data for test
 y_test = np.array(df.values)[:,-1]     #getting the last field to form the class label for test
 
-for : #iterates over n
+# keep track of highest accuracies
+best_perc_acc = 0.0
+best_mlp_acc = 0.0
 
-    for : #iterates over r
+for lr in n: #iterates over n
+
+    for shuf in r: #iterates over r
 
         #iterates over both algorithms
         #-->add your Python code here
+        algorithms = ['Perceptron', 'MLPClassifier']
 
-        for : #iterates over the algorithms
+        for alg in algorithms: #iterates over the algorithms
 
             #Create a Neural Network classifier
             #if Perceptron then
@@ -44,6 +49,11 @@ for : #iterates over n
             #                          hidden_layer_sizes = number of neurons in the ith hidden layer - use 1 hidden layer with 25 neurons,
             #                          shuffle = shuffle the training data, max_iter=1000
             #-->add your Python code here
+            if alg == 'Perceptron':
+                clf = Perceptron(eta0=lr, shuffle=shuf, max_iter=1000)
+            else:
+                clf = MLPClassifier(activation='logistic', learning_rate_init=lr,
+                                    hidden_layer_sizes=(25,), shuffle=shuf, max_iter=1000)
 
             #Fit the Neural Network to the training data
             clf.fit(X_training, y_training)
