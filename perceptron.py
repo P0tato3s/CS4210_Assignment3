@@ -63,12 +63,28 @@ for lr in n: #iterates over n
             #for (x_testSample, y_testSample) in zip(X_test, y_test):
             #to make a prediction do: clf.predict([x_testSample])
             #--> add your Python code here
+            correct_predictions = 0
+            total_predictions = 0
+            for (x_testSample, y_testSample) in zip(X_test, y_test):
+                prediction = clf.predict([x_testSample])
+                if prediction[0] == y_testSample:
+                    correct_predictions += 1
+                total_predictions += 1
+            accuracy = correct_predictions / total_predictions
 
             #check if the calculated accuracy is higher than the previously one calculated for each classifier. If so, update the highest accuracy
             #and print it together with the network hyperparameters
             #Example: "Highest Perceptron accuracy so far: 0.88, Parameters: learning rate=0.01, shuffle=True"
             #Example: "Highest MLP accuracy so far: 0.90, Parameters: learning rate=0.02, shuffle=False"
             #--> add your Python code here
+            if alg == 'Perceptron':
+                if accuracy > best_perc_acc:
+                    best_perc_acc = accuracy
+                    print(f"Highest Perceptron accuracy so far: {best_perc_acc:.2f}, Parameters: learning rate={lr}, shuffle={shuf}")
+            else:
+                if accuracy > best_mlp_acc:
+                    best_mlp_acc = accuracy
+                    print(f"Highest MLP accuracy so far: {best_mlp_acc:.2f}, Parameters: learning rate={lr}, shuffle={shuf}")
 
 
 
