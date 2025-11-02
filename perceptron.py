@@ -50,7 +50,7 @@ for lr in n: #iterates over n
             #                          shuffle = shuffle the training data, max_iter=1000
             #-->add your Python code here
             if alg == 'Perceptron':
-                clf = Perceptron(eta0=lr, shuffle=shuf, max_iter=1000)
+                clf = Perceptron(eta0=lr, shuffle=shuf, max_iter=1000, tol=1e-3)
             else:
                 clf = MLPClassifier(activation='logistic', learning_rate_init=lr,
                                     hidden_layer_sizes=(25,), shuffle=shuf, max_iter=1000)
